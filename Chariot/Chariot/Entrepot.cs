@@ -81,7 +81,20 @@ namespace chariotIntelligent
 
         public override bool IsEqual(GenericNode N2)
         {
-            throw new NotImplementedException();
+            Entrepot entrepot2;
+            // Cas d'invalidité : N2 n'est pas un entrepot
+            if (N2 is Entrepot) entrepot2 = (Entrepot)N2;
+            else                return false;
+          
+            // comparer l'objet support avec N2
+            // Est-ce que les deux configurations de l'entrepot et de chariots sont les mêmes ? (chariots, objet, etc.)
+            bool sontEgales = true;
+
+            for (int i = 0; i < this.grille.GetLength(0); i++)
+                for (int j = 0; j < this.grille.GetLength(1); j++)
+                    if (this.grille[i, j] != entrepot2.grille[i, j]) sontEgales = false;  
+
+            return sontEgales;
         }
 
         public override double GetArcCost(GenericNode N2)
@@ -89,9 +102,34 @@ namespace chariotIntelligent
             throw new NotImplementedException();
         }
 
+        public int[,] getEndState()
+        {
+            // Ici on veut décrire à quoi ressemblera la matrice une fois que le chariot sera devant l'objet
+            // Créer une copie de la grille pour pouvoir la modifier
+            int[,] matEnd = new Entrepot(this.grille).grille;
+
+            for (int i = 0; i < this.grille.GetLength(0); i++)
+            {
+                for (int j = 0; j < this.grille.GetLength(1); j++)
+                {
+                    if (this.grille[i, j] == 4 && this.grille[i-1, j] != 3) matEnd[i, j] = 0;
+                    if (this.grille[i, j] == 3) matEnd[i+1, j] = 4;
+                }
+            }
+            return matEnd;
+        }
+
         public override bool EndState()
         {
-            throw new NotImplementedException();
+            // savoir si l'entrepot support est dans son état final
+            bool estResolu = true;
+            int[,] matResolue = this.getEndState();
+
+            for (int i = 0; i < this.grille.GetLength(0); i++)
+                for (int j = 0; j < this.grille.GetLength(1); j++)
+                    if (this.grille[i, j] != matResolue[i, j]) estResolu = false;
+
+            return estResolu;
         }
 
         public override List<GenericNode> GetListSucc()

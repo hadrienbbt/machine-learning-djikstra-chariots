@@ -12,6 +12,12 @@ namespace chariotIntelligent
         public List<GenericNode> L_Ouverts;
         public List<GenericNode> L_Fermes;
 
+        public Graph(List<GenericNode> ouverts, List<GenericNode> fermes)
+        {
+            L_Ouverts = ouverts;
+            L_Fermes = fermes;
+        }
+
         public int CountInOpenList()
         {
             return L_Ouverts.Count;

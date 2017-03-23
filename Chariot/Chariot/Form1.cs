@@ -26,11 +26,21 @@ namespace chariotIntelligent
             initialiseTab();
             entrepot.afficherGrille();
             List<GenericNode> listeTest = entrepot.GetListSucc();
+            Console.WriteLine("TEST TRUE : " + entrepot.IsEqual(entrepot));
             foreach (Entrepot entr in listeTest)
             {
                 entr.afficherGrille();
                 Console.WriteLine("*********************");
+                Console.WriteLine("TEST FALSE : " + entrepot.IsEqual(entr));
             }
+
+            Entrepot entrepotResolu = new Entrepot(entrepot.getEndState());
+            Console.WriteLine("ETAT FINAL : \n");
+            entrepotResolu.afficherGrille();
+
+            if (entrepot.EndState())    Console.WriteLine("L'entrepot actuel est optimal");
+            else                        Console.WriteLine("L'entrepot actuel n'est pas optimal");
+            // List<GenericNode> solutionAetoile =listeTest.
         }
 
         private void Form1_Load(object sender, EventArgs e)
