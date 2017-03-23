@@ -34,9 +34,14 @@ namespace chariotIntelligent
                 posY = Chariot.GenererAlea(0, 25);
                 // vérifier que Position(posX,poY) est valide
 
-            } while (e.grille[posX, posY] == 1 || e.grille[posX, posY] == 4);
+            } while (e.grille[posX, posY] == 1 || e.grille[posX, posY] == 4 || e.grille[posX, posY] == 3);
             orientation = GenererAlea(0, 2) == 0 ? false : true;
             this.position = new Position(posX,posY);
+        }
+
+        public Chariot(int posX, int posY)
+        {
+            this.position = new Position(posX, posY);
         }
 
         public static int GenererAlea(int min, int max)

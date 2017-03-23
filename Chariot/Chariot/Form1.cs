@@ -12,24 +12,30 @@ namespace chariotIntelligent
 {
     public partial class Form1 : Form
     {
-        static Entrepot e = new Entrepot();
+        Entrepot entrepot = new Entrepot();
         SolidBrush blue = new SolidBrush (Color.Blue);
         SolidBrush green = new SolidBrush(Color.Green);
         SolidBrush white = new SolidBrush(Color.White);
         SolidBrush black = new SolidBrush(Color.Black);
-
         Pen contour = new Pen(Color.Black);
-        int[,] entrepot = e.grille;
+
 
         public Form1()
         {
             InitializeComponent();
-
+            initialiseTab();
+            entrepot.afficherGrille();
+            List<GenericNode> listeTest = entrepot.GetListSucc();
+            foreach (Entrepot entr in listeTest)
+            {
+                entr.afficherGrille();
+                Console.WriteLine("*********************");
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            initialiseTab();
+            
 
         }
 
@@ -43,14 +49,13 @@ namespace chariotIntelligent
                     {
                         if (j != 11 && j != 12 && j != 13)
                         {
-                            entrepot[i, j] = 1; // rayonnage (1)
+                            entrepot.grille[i, j] = 1; // rayonnage (1)
                         }
                     }
                 }
-                entrepot[i, 0] = 2; // zone livraison (2) // libre (0) // chariot (4)
+                entrepot.grille[i, 0] = 2; // zone livraison (2) // libre (0) // chariot (4)
             }
-            entrepot[12, 14] = 3;
-            entrepot[15, 18] = 4;
+            entrepot.grille[12, 14] = 3;
 
             this.Paint += new PaintEventHandler(this.dessinTab);
         }
@@ -59,12 +64,12 @@ namespace chariotIntelligent
         {
             Graphics graphique = this.CreateGraphics();
             contour.Width = 2;
-            for (int i = 0; i < entrepot.GetLength(0); i++)
+            for (int j = 0; j < entrepot.grille.GetLength(0); j++)
             {
-                for (int j = 0; j < entrepot.GetLength(1); j++)
+                for (int i = 0; i< entrepot.grille.GetLength(1); i++)
                 {
                     graphique.DrawRectangle(contour, i * 40 + 20, j * 40 + 20, 40, 40);
-                    switch (entrepot[j, i])
+                    switch (entrepot.grille[j,i])
                     {
                         case 0:
                             graphique.FillRectangle(white, i * 40 + 20, j * 40 + 20, 40, 40);
