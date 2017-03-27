@@ -16,6 +16,7 @@ namespace ProjetChariot1
         SolidBrush green = new SolidBrush(Color.Green);
         SolidBrush white = new SolidBrush(Color.White);
         SolidBrush black = new SolidBrush(Color.Black);
+        SolidBrush red = new SolidBrush(Color.Red);
         Pen contour = new Pen(Color.Black);
 
         Chariot monChariot;
@@ -31,11 +32,10 @@ namespace ProjetChariot1
         {
             Console.WriteLine("Load");
             maGrille = new int[25, 25];
-            positionDepart = new Position(0, 4);
+            positionDepart = new Position(0, 24);
             positionDestination = new Position(11, 14);
             monChariot = new Chariot(positionDepart, positionDestination,maGrille);
             initialiseTab();
-            this.Paint += new PaintEventHandler(this.dessinTab);
             Console.WriteLine("Fin Load");
         }
 
@@ -58,6 +58,7 @@ namespace ProjetChariot1
             }
             maGrille[12, 14] = 3;
             maGrille[monChariot.act.x, monChariot.act.y] = 4;
+            this.Paint += new PaintEventHandler(this.dessinTab);
         }
 
         private void dessinTab(object sender, PaintEventArgs e)
@@ -96,10 +97,16 @@ namespace ProjetChariot1
             }
         }
 
+
+
         private void button1_Click(object sender, EventArgs e)
         {
+            Graphics graphique = this.CreateGraphics();
+
             Graph g = new Graph();
-            NodeChariot N0 = new NodeChariot(monChariot.act,monChariot.des,maGrille);
+            NodeChariot.initialiserTout(monChariot.act, monChariot.des, maGrille);
+            NodeChariot N0 = new NodeChariot(monChariot.act);
+            
 
            // N0.afficherGrille();
             Console.WriteLine("####################\n");
@@ -116,13 +123,13 @@ namespace ProjetChariot1
                 {
                     listBox1.Items.Add(N);
                     NodeChariot NC = (NodeChariot)N;
-                    //NC.afficherGrille();
-                    Console.WriteLine(" # # # # # #\n");
+                    graphique.FillRectangle(white, NC.actuelle.y * 40 + 20, NC.actuelle.x * 40 + 20, 40, 40);
+                    graphique.FillEllipse(red, NC.actuelle.y * 40 + 30, NC.actuelle.x * 40 + 30, 20, 20);
                 }
 
             }
-                labelcountopen.Text = "Nb noeuds des ouverts : " + g.CountInOpenList().ToString();
-                labelcountclosed.Text = "Nb noeuds des fermés : " + g.CountInClosedList().ToString();
+                labelcountopen.Text = "Nb noeuds finale ouverts : " + g.CountInOpenList().ToString();
+                labelcountclosed.Text = "Nb noeuds finale fermés : " + g.CountInClosedList().ToString();
                 g.GetSearchTree(treeView1);
             }
 

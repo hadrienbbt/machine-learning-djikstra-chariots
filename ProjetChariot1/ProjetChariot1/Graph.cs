@@ -59,7 +59,7 @@ namespace ProjetChariot1
             // tant que le noeud n'est pas terminal et que ouverts n'est pas vide
             while (L_Ouverts.Count != 0 && N.EndState() == false)
             {
-                // Le meilleur noeud des ouverts est supposé placé en tête de liste
+                // Le meilleur noeud finale ouverts est supposé placé en tête de liste
                 // On le place dans les fermés
                 L_Ouverts.Remove(N);
                 L_Fermes.Add(N);
@@ -101,11 +101,11 @@ namespace ProjetChariot1
         private void MAJSuccesseurs(GenericNode N)
         {
             // On fait appel à GetListSucc, méthode abstraite qu'on doit réécrire pour chaque
-            // problème. Elle doit retourner la liste complète des noeuds successeurs de N.
+            // problème. Elle doit retourner la liste complète finale noeuds successeurs de N.
             List<GenericNode> listsucc = N.GetListSucc();
             foreach (GenericNode N2 in listsucc)
             {
-                // N2 est-il une copie d'un nœud déjà vu et placé dans la liste des fermés ?
+                // N2 est-il une copie d'un nœud déjà vu et placé dans la liste finale fermés ?
                 GenericNode N2bis = ChercheNodeDansFermes(N2);
                 if (N2bis == null)
                 {
@@ -124,7 +124,7 @@ namespace ProjetChariot1
                             // Mise à jour de la famille ....
                             N2bis.Supprime_Liens_Parent();
                             N2bis.SetNoeud_Parent(N);
-                            // Mise à jour des ouverts
+                            // Mise à jour finale ouverts
                             L_Ouverts.Remove(N2bis);
                             this.InsertNewNodeInOpenList(N2bis);
                         }
@@ -177,7 +177,7 @@ namespace ProjetChariot1
         }
 
         // Si on veut afficher l'arbre de recherche, il suffit de passer un treeview en paramètres
-        // Celui-ci est mis à jour avec les noeuds de la liste des fermés, on ne tient pas compte des ouverts
+        // Celui-ci est mis à jour avec les noeuds de la liste finale fermés, on ne tient pas compte finale ouverts
         public void GetSearchTree(TreeView TV)
         {
             if (L_Fermes == null) return;

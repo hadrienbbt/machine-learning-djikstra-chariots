@@ -9,25 +9,23 @@ namespace ProjetChariot1
     class NodeChariot : GenericNode
     {
         public int o = 0;
-        public static Chariot Ch;
-        public Position actuelle, finale;
+        public Position actuelle;
+        public static Position finale;
         public static int[,] grille=new int[25,25];
 
-        public NodeChariot(Position Actuelle, Position Finale, int[,]Grille)
+
+
+        public static void initialiserTout (Position Actuelle, Position Finale, int[,] Grille)
         {
-            actuelle = Actuelle;
             finale = Finale;
-            Ch = new Chariot();
-            Ch.act = actuelle;
-            Ch.des = finale;
             grille = Grille;
         }
 
 
 
-        public NodeChariot(Position Nouvelle)
+        public NodeChariot(Position Nouvelle):base()
         {
-            Ch.act = Nouvelle;
+            actuelle = Nouvelle;
         }
 
 
@@ -37,8 +35,8 @@ namespace ProjetChariot1
 
         public override bool EndState()
         {
-            Console.WriteLine("Endstate : " +Ch.act.x+" - " + Ch.act.y +"  == " + Ch.des.x +" - "+Ch.des.y+"\n\n");
-            return (Ch.act.Equals(Ch.des));
+            Console.WriteLine("Endstate : " +actuelle.x+" - " + actuelle.y +"  == " + finale.x +" - "+finale.y+"\n\n");
+            return (actuelle.Equals(finale));
         }
 
         public override double GetArcCost(GenericNode N2)
@@ -51,59 +49,57 @@ namespace ProjetChariot1
             o++;
 
             afficherGrille();
-            Console.WriteLine("Position actuelle chariot : "+Ch.act.x+"  "+Ch.act.y + "\n\n");
+            Console.WriteLine("Position actuelle chariot : "+actuelle.x+"  "+actuelle.y + "\n\n");
             List <GenericNode> listeGenericNode = new List<GenericNode>();
 
-            if (Ch.act.y > 1 && grille[Ch.act.x, Ch.act.y - 1] != 1 && grille[Ch.act.x, Ch.act.y - 1] != 3 && grille[Ch.act.x, Ch.act.y - 1] != 4)
+            if (actuelle.y > 1 && grille[actuelle.x, actuelle.y - 1] != 1 && grille[actuelle.x, actuelle.y - 1] != 3 && grille[actuelle.x, actuelle.y - 1] != 4)
             {
-                grille[Ch.act.x, Ch.act.y] = 0;
-                grille[Ch.act.x, Ch.act.y - 1] = 4;
+                grille[actuelle.x, actuelle.y] = 0;
+                grille[actuelle.x, actuelle.y - 1] = 4;
                 Console.WriteLine("Gauche");
-                listeGenericNode.Add(new NodeChariot(new Position(Ch.act.x, Ch.act.y - 1)));
-                Ch.act.y++;
+                Position ajout = new Position(actuelle.x, actuelle.y - 1);
+                listeGenericNode.Add(new NodeChariot(ajout));
                 //afficherGrille();
             }
             
 
-            if (Ch.act.y < (grille.GetLength(0) - 1) && grille[Ch.act.x, Ch.act.y + 1] != 1 && grille[Ch.act.x, Ch.act.y + 1] != 3 && grille[Ch.act.x, Ch.act.y + 1] != 4)
+            if (actuelle.y < (grille.GetLength(0) - 1) && grille[actuelle.x, actuelle.y + 1] != 1 && grille[actuelle.x, actuelle.y + 1] != 3 && grille[actuelle.x, actuelle.y + 1] != 4)
             {
-                grille[Ch.act.x, Ch.act.y + 1] = 4;
-                grille[Ch.act.x, Ch.act.y] = 0;
+                grille[actuelle.x, actuelle.y + 1] = 4;
+                grille[actuelle.x, actuelle.y] = 0;
                 Console.WriteLine("Droite");
-                listeGenericNode.Add(new NodeChariot(new Position(Ch.act.x, Ch.act.y + 1)));
-                Ch.act.y--;
+                Position ajout = new Position(actuelle.x, actuelle.y + 1);
+                listeGenericNode.Add(new NodeChariot(ajout));
                 //afficherGrille();
             }
 
-            if (Ch.act.x > 1 && grille[Ch.act.x - 1, Ch.act.y] != 1 && grille[Ch.act.x - 1, Ch.act.y] != 3 && grille[Ch.act.x - 1, Ch.act.y] != 4)
+            if (actuelle.x > 1 && grille[actuelle.x - 1, actuelle.y] != 1 && grille[actuelle.x - 1, actuelle.y] != 3 && grille[actuelle.x - 1, actuelle.y] != 4)
             {
-                grille[Ch.act.x - 1, Ch.act.y] = 4;
-                grille[Ch.act.x, Ch.act.y] = 0;
+                grille[actuelle.x - 1, actuelle.y] = 4;
+                grille[actuelle.x, actuelle.y] = 0;
                 Console.WriteLine("Haut");
-                listeGenericNode.Add(new NodeChariot(new Position(Ch.act.x-1, Ch.act.y)));
-                Ch.act.x++;
+                Position ajout = new Position(actuelle.x-1, actuelle.y);
+                listeGenericNode.Add(new NodeChariot(ajout));
                // afficherGrille();
             }
 
-            if (Ch.act.x < (grille.GetLength(1) - 1) && grille[Ch.act.x + 1, Ch.act.y] != 1 && grille[Ch.act.x + 1, Ch.act.y] != 3 && grille[Ch.act.x + 1, Ch.act.y] != 4)
+            if (actuelle.x < (grille.GetLength(1) - 1) && grille[actuelle.x + 1, actuelle.y] != 1 && grille[actuelle.x + 1, actuelle.y] != 3 && grille[actuelle.x + 1, actuelle.y] != 4)
             {
-                grille[Ch.act.x + 1, Ch.act.y] = 4;
-                grille[Ch.act.x, Ch.act.y] = 0;
+                grille[actuelle.x + 1, actuelle.y] = 4;
+                grille[actuelle.x, actuelle.y] = 0;
                 Console.WriteLine("Bas");
-                listeGenericNode.Add(new NodeChariot(new Position(Ch.act.x + 1, Ch.act.y)));
-                Ch.act.x--;
+                Position ajout = new Position(actuelle.x+1, actuelle.y );
+                listeGenericNode.Add(new NodeChariot(ajout));
                // afficherGrille();
             }
-            Ch.grille=grille;
-
             return (listeGenericNode);
         }
 
         public override bool IsEqual(GenericNode N2)
         {
             NodeChariot NC = (NodeChariot)N2;
-          // Console.WriteLine("Is Equal NodeComparé " + NC.actuelle.x + " - " + NC.actuelle.y + "  a  " + Ch.act.x + " - " + Ch.act.y + "\n\n");
-            return (NC.actuelle == this.actuelle);
+          // Console.WriteLine("Is Equal NodeComparé " + NC.actuelle.x + " - " + NC.actuelle.y + "  a  " + actuelle.x + " - " + actuelle.y + "\n\n");
+            return (NC.actuelle.Equals(this.actuelle));
         }
 
         public void afficherGrille()
@@ -117,6 +113,25 @@ namespace ProjetChariot1
                 Console.WriteLine();
             }
             Console.WriteLine("****\n");
+        }
+
+
+
+        public  NodeChariot nodeGagnante (List<GenericNode> liste)
+        {
+            NodeChariot nodeG = null;
+            int indice=100;
+            foreach(GenericNode GN in liste)
+            {
+                int indiceTemp;
+                NodeChariot NC = (NodeChariot)GN;
+                indiceTemp = (NC.actuelle.x - finale.x + NC.actuelle.y + finale.y);
+                if (indiceTemp < indice)
+                {
+                    nodeG = NC;
+                }
+            }
+            return nodeG;
         }
 
     }

@@ -8,7 +8,7 @@ namespace ProjetChariot1
 {
 
         // classe abstraite, il est donc impératif de créer une classe qui en hérite
-        // pour résoudre un problème particulier en y ajoutant des infos liées au contexte du problème
+        // pour résoudre un problème particulier en y ajoutant finale infos liées au contexte du problème
         abstract public class GenericNode
         {
             // protected string Name;              // DOIT ETRE UNIQUE POUR CHAQUE genericnode !!
