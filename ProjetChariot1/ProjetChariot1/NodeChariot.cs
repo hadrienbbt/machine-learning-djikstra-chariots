@@ -13,7 +13,7 @@ namespace ProjetChariot1
         public Position finale;
         public int[,] grille;
 
-        public NodeChariot(Position nouvelle, int[,]Grille,Position Finale)
+        public NodeChariot(Position nouvelle,ref int[,]Grille, Position Finale)
         {
             finale = Finale;
             actuelle = nouvelle;
@@ -48,7 +48,7 @@ namespace ProjetChariot1
             if (actuelle.y > 0 && grille[actuelle.x, actuelle.y - 1] != 1 && grille[actuelle.x, actuelle.y - 1] != 3 && grille[actuelle.x, actuelle.y - 1] != 4)
             {
                 Console.WriteLine("Gauche");
-                listeGenericNode.Add(new NodeChariot(new Position(actuelle.x, actuelle.y - 1),grille, finale));
+                listeGenericNode.Add(new NodeChariot(new Position(actuelle.x, actuelle.y - 1),ref grille, finale));
                 grille[actuelle.x, actuelle.y - 1] = 4;
                 grille[actuelle.x, actuelle.y] = 0;
             }
@@ -57,7 +57,7 @@ namespace ProjetChariot1
             if (actuelle.y < (grille.GetLength(0) - 1) && grille[actuelle.x, actuelle.y + 1] != 1 && grille[actuelle.x, actuelle.y + 1] != 3 && grille[actuelle.x, actuelle.y + 1] != 4)
             {
                 Console.WriteLine("Droite");
-                listeGenericNode.Add(new NodeChariot(new Position(actuelle.x, actuelle.y + 1), grille, finale));
+                listeGenericNode.Add(new NodeChariot(new Position(actuelle.x, actuelle.y + 1),ref grille, finale));
                 grille[actuelle.x, actuelle.y + 1] = 4;
                 grille[actuelle.x, actuelle.y] = 0;
             }
@@ -65,7 +65,7 @@ namespace ProjetChariot1
             if (actuelle.x > 0 && grille[actuelle.x - 1, actuelle.y] != 1 && grille[actuelle.x - 1, actuelle.y] != 3 && grille[actuelle.x - 1, actuelle.y] != 4)
             {
                 Console.WriteLine("Haut");
-                listeGenericNode.Add(new NodeChariot(new Position(actuelle.x-1, actuelle.y), grille, finale));
+                listeGenericNode.Add(new NodeChariot(new Position(actuelle.x-1, actuelle.y), ref grille,  finale));
                 grille[actuelle.x - 1, actuelle.y] = 4;
                 grille[actuelle.x, actuelle.y] = 0;
             }
@@ -73,7 +73,7 @@ namespace ProjetChariot1
             if (actuelle.x < (this.grille.GetLength(1) - 1) && grille[actuelle.x + 1, actuelle.y] != 1 && grille[actuelle.x + 1, actuelle.y] != 3 && grille[actuelle.x + 1, actuelle.y] != 4)
             {
                 Console.WriteLine("Bas");
-                listeGenericNode.Add(new NodeChariot(new Position(actuelle.x + 1, actuelle.y), grille, finale));
+                listeGenericNode.Add(new NodeChariot(new Position(actuelle.x + 1, actuelle.y),ref grille, finale));
                 grille[actuelle.x + 1, actuelle.y] = 4;
                 grille[actuelle.x, actuelle.y] = 0;
             }

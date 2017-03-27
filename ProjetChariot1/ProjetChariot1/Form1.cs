@@ -99,7 +99,7 @@ namespace ProjetChariot1
         private void button1_Click(object sender, EventArgs e)
         {
             Graph g = new Graph();
-            NodeChariot N0 = new NodeChariot(positionDepart,maGrille,positionDestination);
+            NodeChariot N0 = new NodeChariot(positionDepart,ref maGrille, positionDestination);
             N0.finale = positionDestination;
             N0.grille = maGrille;
            // N0.afficherGrille();
