@@ -15,5 +15,8 @@ namespace ProjetChariot1
             x = X;
             y = Y;
         }
+        public bool Equals(Position p) { return (this.x == p.x && this.y == p.y);
+        }
+
     }
 }

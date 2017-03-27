@@ -99,9 +99,8 @@ namespace ProjetChariot1
         private void button1_Click(object sender, EventArgs e)
         {
             Graph g = new Graph();
-            NodeChariot N0 = new NodeChariot(positionDepart,ref maGrille, positionDestination);
-            N0.finale = positionDestination;
-            N0.grille = maGrille;
+            NodeChariot N0 = new NodeChariot(monChariot.act,monChariot.des,maGrille);
+
            // N0.afficherGrille();
             Console.WriteLine("####################\n");
 

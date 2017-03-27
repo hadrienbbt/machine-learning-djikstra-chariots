@@ -22,6 +22,7 @@ namespace ProjetChariot1
             act = Act;
             listeNodeChariot = new List<NodeChariot>();
         }
+        public Chariot() { }
 
         //public bool[] mouvement()
         //{
