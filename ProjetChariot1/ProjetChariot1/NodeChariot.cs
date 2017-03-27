@@ -31,6 +31,10 @@ namespace ProjetChariot1
 
         public override void CalculeHCost()
         {
+            this.HCost = Math.Abs((finale.x - this.actuelle.x) + (finale.y - this.actuelle.y));
+            Console.WriteLine("Cout =" + (finale.x-this.actuelle.x ) +" - " + (finale.y -this.actuelle.y ));
+            Console.WriteLine(this.HCost);
+            // Estimation vol oiseau
         }
 
         public override bool EndState()
@@ -41,14 +45,14 @@ namespace ProjetChariot1
 
         public override double GetArcCost(GenericNode N2)
         {
-            return (1);
+            return (1);//Tourne = 3
         }
 
         public override List<GenericNode> GetListSucc()
         {
             o++;
 
-            afficherGrille();
+            //afficherGrille();
             Console.WriteLine("Position actuelle chariot : "+actuelle.x+"  "+actuelle.y + "\n\n");
             List <GenericNode> listeGenericNode = new List<GenericNode>();
 
@@ -56,7 +60,7 @@ namespace ProjetChariot1
             {
                 grille[actuelle.x, actuelle.y] = 0;
                 grille[actuelle.x, actuelle.y - 1] = 4;
-                Console.WriteLine("Gauche");
+               // Console.WriteLine("Gauche");
                 Position ajout = new Position(actuelle.x, actuelle.y - 1);
                 listeGenericNode.Add(new NodeChariot(ajout));
                 //afficherGrille();
@@ -67,7 +71,7 @@ namespace ProjetChariot1
             {
                 grille[actuelle.x, actuelle.y + 1] = 4;
                 grille[actuelle.x, actuelle.y] = 0;
-                Console.WriteLine("Droite");
+               // Console.WriteLine("Droite");
                 Position ajout = new Position(actuelle.x, actuelle.y + 1);
                 listeGenericNode.Add(new NodeChariot(ajout));
                 //afficherGrille();
@@ -77,7 +81,7 @@ namespace ProjetChariot1
             {
                 grille[actuelle.x - 1, actuelle.y] = 4;
                 grille[actuelle.x, actuelle.y] = 0;
-                Console.WriteLine("Haut");
+               // Console.WriteLine("Haut");
                 Position ajout = new Position(actuelle.x-1, actuelle.y);
                 listeGenericNode.Add(new NodeChariot(ajout));
                // afficherGrille();
@@ -87,7 +91,7 @@ namespace ProjetChariot1
             {
                 grille[actuelle.x + 1, actuelle.y] = 4;
                 grille[actuelle.x, actuelle.y] = 0;
-                Console.WriteLine("Bas");
+               // Console.WriteLine("Bas");
                 Position ajout = new Position(actuelle.x+1, actuelle.y );
                 listeGenericNode.Add(new NodeChariot(ajout));
                // afficherGrille();
