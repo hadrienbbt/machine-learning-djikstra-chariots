@@ -10,7 +10,7 @@ namespace ProjetChariot1
     {
         public Position des; // destination
         public Position act; // act
-        List<NodeChariot> listeNodeChariot;
+        List<NodeChariotChemin> listeNodeChariot;
         public int[,] grille;
 
 
@@ -20,7 +20,7 @@ namespace ProjetChariot1
             grille = Grille;
             des = Des;
             act = Act;
-            listeNodeChariot = new List<NodeChariot>();
+            listeNodeChariot = new List<NodeChariotChemin>();
         }
         public Chariot() { }
 

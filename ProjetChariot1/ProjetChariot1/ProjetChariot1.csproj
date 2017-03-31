@@ -59,7 +59,8 @@
     </Compile>
     <Compile Include="GenericNode.cs" />
     <Compile Include="Graph.cs" />
-    <Compile Include="NodeChariot.cs" />
+    <Compile Include="NodeChariotChemin.cs" />
+    <Compile Include="NodeChariotTemps.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

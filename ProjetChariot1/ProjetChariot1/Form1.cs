@@ -104,8 +104,8 @@ namespace ProjetChariot1
             Graphics graphique = this.CreateGraphics();
 
             Graph g = new Graph();
-            NodeChariot.initialiserTout(monChariot.act, monChariot.des, maGrille);
-            NodeChariot N0 = new NodeChariot(monChariot.act);
+            NodeChariotTemps.initialiserTout(monChariot.act, monChariot.des, maGrille,0);
+            NodeChariotTemps N0 = new NodeChariotTemps(monChariot.act,0);
             
 
            // N0.afficherGrille();
@@ -122,7 +122,7 @@ namespace ProjetChariot1
                 foreach (GenericNode N in Lres)
                 {
                     listBox1.Items.Add(N);
-                    NodeChariot NC = (NodeChariot)N;
+                    NodeChariotChemin NC = (NodeChariotChemin)N;
                     graphique.FillRectangle(white, NC.actuelle.y * 40 + 20, NC.actuelle.x * 40 + 20, 40, 40);
                     graphique.FillEllipse(red, NC.actuelle.y * 40 + 30, NC.actuelle.x * 40 + 30, 20, 20);
                 }
@@ -132,6 +132,6 @@ namespace ProjetChariot1
                 labelcountclosed.Text = "Nb noeuds finale fermés : " + g.CountInClosedList().ToString();
                 g.GetSearchTree(treeView1);
             }
-
     }
+
 }

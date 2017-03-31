@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProjetChariot1
 {
-    class NodeChariot : GenericNode
+    class NodeChariotChemin : GenericNode
     {
-        public int o = 0;
         public Position actuelle;
         public static Position finale;
         public static int[,] grille=new int[25,25];
@@ -23,7 +22,7 @@ namespace ProjetChariot1
 
 
 
-        public NodeChariot(Position Nouvelle):base()
+        public NodeChariotChemin(Position Nouvelle):base()
         {
             actuelle = Nouvelle;
         }
@@ -50,8 +49,6 @@ namespace ProjetChariot1
 
         public override List<GenericNode> GetListSucc()
         {
-            o++;
-
             //afficherGrille();
             Console.WriteLine("Position actuelle chariot : "+actuelle.x+"  "+actuelle.y + "\n\n");
             List <GenericNode> listeGenericNode = new List<GenericNode>();
@@ -62,7 +59,7 @@ namespace ProjetChariot1
                 grille[actuelle.x, actuelle.y - 1] = 4;
                // Console.WriteLine("Gauche");
                 Position ajout = new Position(actuelle.x, actuelle.y - 1);
-                listeGenericNode.Add(new NodeChariot(ajout));
+                listeGenericNode.Add(new NodeChariotChemin(ajout));
                 //afficherGrille();
             }
             
@@ -73,7 +70,7 @@ namespace ProjetChariot1
                 grille[actuelle.x, actuelle.y] = 0;
                // Console.WriteLine("Droite");
                 Position ajout = new Position(actuelle.x, actuelle.y + 1);
-                listeGenericNode.Add(new NodeChariot(ajout));
+                listeGenericNode.Add(new NodeChariotChemin(ajout));
                 //afficherGrille();
             }
 
@@ -83,7 +80,7 @@ namespace ProjetChariot1
                 grille[actuelle.x, actuelle.y] = 0;
                // Console.WriteLine("Haut");
                 Position ajout = new Position(actuelle.x-1, actuelle.y);
-                listeGenericNode.Add(new NodeChariot(ajout));
+                listeGenericNode.Add(new NodeChariotChemin(ajout));
                // afficherGrille();
             }
 
@@ -93,7 +90,7 @@ namespace ProjetChariot1
                 grille[actuelle.x, actuelle.y] = 0;
                // Console.WriteLine("Bas");
                 Position ajout = new Position(actuelle.x+1, actuelle.y );
-                listeGenericNode.Add(new NodeChariot(ajout));
+                listeGenericNode.Add(new NodeChariotChemin(ajout));
                // afficherGrille();
             }
             return (listeGenericNode);
@@ -101,7 +98,7 @@ namespace ProjetChariot1
 
         public override bool IsEqual(GenericNode N2)
         {
-            NodeChariot NC = (NodeChariot)N2;
+            NodeChariotChemin NC = (NodeChariotChemin)N2;
           // Console.WriteLine("Is Equal NodeComparé " + NC.actuelle.x + " - " + NC.actuelle.y + "  a  " + actuelle.x + " - " + actuelle.y + "\n\n");
             return (NC.actuelle.Equals(this.actuelle));
         }
@@ -121,14 +118,14 @@ namespace ProjetChariot1
 
 
 
-        public  NodeChariot nodeGagnante (List<GenericNode> liste)
+        public  NodeChariotChemin nodeGagnante (List<GenericNode> liste)
         {
-            NodeChariot nodeG = null;
+            NodeChariotChemin nodeG = null;
             int indice=100;
             foreach(GenericNode GN in liste)
             {
                 int indiceTemp;
-                NodeChariot NC = (NodeChariot)GN;
+                NodeChariotChemin NC = (NodeChariotChemin)GN;
                 indiceTemp = (NC.actuelle.x - finale.x + NC.actuelle.y + finale.y);
                 if (indiceTemp < indice)
                 {
