@@ -17,8 +17,9 @@ namespace ProjetChariot1
             x = X;
             y = Y;
         }
-        public bool Equals(Position p) { return (this.x == p.x && this.y == p.y && this.orientation==p.orientation);
-        }
+        public bool Equals(Position p) { return (this.x == p.x && this.y == p.y );}
+
+        public bool Equals2(Position p) { return (this.x == p.x && this.y == p.y && this.orientation==p.orientation); }
 
         public Position(int X, int Y, int Orientation)
         {

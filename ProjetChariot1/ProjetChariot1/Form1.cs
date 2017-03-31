@@ -32,8 +32,8 @@ namespace ProjetChariot1
         {
             Console.WriteLine("Load");
             maGrille = new int[25, 25];
-            positionDepart = new Position(0, 24);
-            positionDestination = new Position(11, 14);
+            positionDepart = new Position(24, 20);
+            positionDestination = new Position(12, 14);
             monChariot = new Chariot(positionDepart, positionDestination,maGrille);
             initialiseTab();
             Console.WriteLine("Fin Load");
@@ -105,8 +105,8 @@ namespace ProjetChariot1
 
             Graph g = new Graph();
             NodeChariotTemps.initialiserTout(monChariot.act, monChariot.des, maGrille,0);
-            NodeChariotTemps N0 = new NodeChariotTemps(monChariot.act,0);
-            
+            NodeChariotTemps N0 = new NodeChariotTemps(monChariot.act,1);
+
 
            // N0.afficherGrille();
             Console.WriteLine("####################\n");
@@ -122,7 +122,7 @@ namespace ProjetChariot1
                 foreach (GenericNode N in Lres)
                 {
                     listBox1.Items.Add(N);
-                    NodeChariotChemin NC = (NodeChariotChemin)N;
+                    NodeChariotTemps NC = (NodeChariotTemps)N;
                     graphique.FillRectangle(white, NC.actuelle.y * 40 + 20, NC.actuelle.x * 40 + 20, 40, 40);
                     graphique.FillEllipse(red, NC.actuelle.y * 40 + 30, NC.actuelle.x * 40 + 30, 20, 20);
                 }
@@ -131,7 +131,32 @@ namespace ProjetChariot1
                 labelcountopen.Text = "Nb noeuds finale ouverts : " + g.CountInOpenList().ToString();
                 labelcountclosed.Text = "Nb noeuds finale fermés : " + g.CountInClosedList().ToString();
                 g.GetSearchTree(treeView1);
+           
+            Position livraison = new Position(0, 0);
+            Graph g2 = new Graph();
+            NodeChariotTemps.initialiserTout(N0.actuelle, livraison, maGrille, 0);
+            NodeChariotTemps NN0 = new NodeChariotTemps(Lres.,1);// Ici, cherche comment founir le dernier élément de la liste
+            Lres.Clear();
+            Lres = g2.RechercheSolutionAEtoile(NN0);
+            if (Lres.Count == 0)
+            {
+                labelsolution.Text = "Pas de solution";
             }
+            else
+            {
+                labelsolution.Text = "Une solution a été trouvée";
+                foreach (GenericNode N in Lres)
+                {
+                    listBox1.Items.Add(N);
+                    NodeChariotTemps NC = (NodeChariotTemps)N;
+                    graphique.FillRectangle(white, NC.actuelle.y * 40 + 20, NC.actuelle.x * 40 + 20, 40, 40);
+                    graphique.FillEllipse(red, NC.actuelle.y * 40 + 30, NC.actuelle.x * 40 + 30, 20, 20);
+                }
+
+            }
+        }
+
+
     }
 
 }

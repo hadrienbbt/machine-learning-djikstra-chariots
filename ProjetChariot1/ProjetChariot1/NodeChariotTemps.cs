@@ -39,8 +39,7 @@ namespace ProjetChariot1
 
         public override bool EndState()
         {
-            Console.WriteLine("Endstate : " + actuelle.x + " - " + actuelle.y + "  == " + finale.x + " - " + finale.y + "\n\n");
-            return (actuelle.Equals(finale));
+            return (actuelle.Equals(new Position(finale.x-1,finale.y)) || actuelle.Equals(new Position(finale.x + 1, finale.y)));
         }
 
         public override double GetArcCost(GenericNode N2)
@@ -53,6 +52,7 @@ namespace ProjetChariot1
         {
             List<GenericNode> listeGenericNode = new List<GenericNode>();
             int nouveauCout=0;
+            Position ajout;
             if (actuelle.y > 1 && grille[actuelle.x, actuelle.y - 1] != 1 && grille[actuelle.x, actuelle.y - 1] != 3 && grille[actuelle.x, actuelle.y - 1] != 4)
             {//GAUCHE
                 grille[actuelle.x, actuelle.y] = 0;
@@ -65,7 +65,7 @@ namespace ProjetChariot1
                 {
                     nouveauCout = 1;
                 }
-                Position ajout = new Position(actuelle.x, actuelle.y - 1, 1);
+                 ajout = new Position(actuelle.x, actuelle.y - 1, 1);
                 listeGenericNode.Add(new NodeChariotTemps(ajout,nouveauCout));
             }
 
@@ -82,7 +82,7 @@ namespace ProjetChariot1
                 {
                     nouveauCout = 1;
                 }
-                Position ajout = new Position(actuelle.x, actuelle.y + 1, 2);
+                 ajout = new Position(actuelle.x, actuelle.y + 1, 2);
                 listeGenericNode.Add(new NodeChariotTemps(ajout, nouveauCout));
             }
 
@@ -98,7 +98,7 @@ namespace ProjetChariot1
                 {
                     nouveauCout = 1;
                 }
-                Position ajout = new Position(actuelle.x, actuelle.y + 1, 3);
+                 ajout = new Position(actuelle.x-1, actuelle.y , 3);
                 listeGenericNode.Add(new NodeChariotTemps(ajout, nouveauCout));
             }
 
@@ -114,9 +114,12 @@ namespace ProjetChariot1
                 {
                     nouveauCout = 1;
                 }
-                Position ajout = new Position(actuelle.x, actuelle.y + 1, 4);
+                 ajout = new Position(actuelle.x+1, actuelle.y , 4);
                 listeGenericNode.Add(new NodeChariotTemps(ajout, nouveauCout));
             }
+            charge = this.EndState() ? true : false;
+
+
             return (listeGenericNode);
         }
 
