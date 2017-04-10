@@ -1,0 +1,5 @@
+Bon, j'ai pas trouvé comment mettre des commentaires plus détaillés sur Git.
+Donc, l'algo marche en partie là : ça l'affiche dans la console, j'ai mis un breakpoint après 10 itérations, car la reconnaissance de l'état finale 
+ne marche pas. Vous verrez également qu'il y a un problème avec l'effacement des 4 (donc de l'ancienne position du chariot), je crois que ce n'est pas normal,
+là, si le chariot va à gauche, et qu'on met 0 derrière lui, il peut ensuite y revenir, c'est sans fin. Mais, changez les itérations (genre 1000, 1500), vous verrez
+que les 4 se propagent de partout. Ptet à creuser, si l'autre solution ne marche pas pour le moment 
