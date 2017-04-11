@@ -32,8 +32,12 @@ namespace Question3
             List<List<double>> lvecteursapprentissage = ControlerData.intercaler(classeAapprentissage, classeBapprentissage);
             List<List<double>> lvecteursentreesnormalisees = ControlerData.normaliserVecteur(lvecteursapprentissage, 800, 800);
 
-
             List<int> lsortiesdesirees = ControlerData.intercaler(ControlerData.getAllClasseA(),ControlerData.getAllClasseB());
+
+			// obtenir un nouvel ordre de présentation des vecteurs pour le réseau
+			List<int> newOrder = ControlerData.nouvelOrdre(lvecteursentreesnormalisees.Count);
+			lsortiesdesirees = ControlerData.melanger(lsortiesdesirees, newOrder);
+			lvecteursentreesnormalisees = ControlerData.melanger(lvecteursentreesnormalisees, newOrder);
 
             reseau.backprop(lvecteursentreesnormalisees, lsortiesdesirees,
                                 Convert.ToDouble(textBoxalpha.Text),
@@ -42,6 +46,7 @@ namespace Question3
             DessinPoints();
             ImageSortiePBox.Invalidate();
         }
+
         private void VisualisationSortie_Load(object sender, EventArgs e)
         {
             int x, z;

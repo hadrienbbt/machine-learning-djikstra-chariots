@@ -10,7 +10,9 @@ namespace Question3
 {
     static class ControlerData
     {
-        private static string filename;        
+        private static string filename; 
+		private static Random rnd = new Random();
+
         public static void chargerFichier(string oneFileName) { filename = oneFileName; }
 
         public static Dictionary<string, Double> ObtenirValeursParEchantillon(int numEchantillon)
@@ -123,6 +125,59 @@ namespace Question3
 
             return res;
         }
+
+		public static void Shuffle<T>(this IList<T> list)
+		{
+			int n = list.Count;
+			while (n > 1)
+			{
+				n--;
+				int k = ControlerData.rnd.Next(n + 1);
+				T value = list[k];
+				list[k] = list[n];
+				list[n] = value;
+			}
+		}
+
+		public static List<int> nouvelOrdre(int taille)
+        {
+			// Initialiser une liste des 3000 premiers int
+			List<int> pioche = new List<int>();
+			for (int i = 0; i < taille; i++) pioche.Add(i);
+
+            ControlerData.Shuffle(pioche);
+
+			return pioche;
+        }
+
+		public static List<int> melanger(List<int> liste, List<int> ordre) {
+			List<int> res = new List<int>();
+			for (int i = 0; i < 3000; i++) res.Add(0);
+
+			int counter = 0;
+			foreach (var position in ordre)
+			{
+				res[position] = liste[counter];
+				counter++;
+			}
+
+			return res;
+		}
+
+		public static List<List<double>> melanger(List<List<double>> liste, List<int> ordre)
+		{
+			List<List<double>> res = new List<List<double>>();
+			for (int i = 0; i < 3000; i++) res.Add(new List<double>());
+
+			int counter = 0;
+			foreach (var position in ordre)
+			{
+				res[position] = liste[counter];
+				counter++;
+			}
+
+			return res;
+		}
 
         public static List<List<double>> intercaler(List<List<double>> l1, List<List<double>> l2)
         {
