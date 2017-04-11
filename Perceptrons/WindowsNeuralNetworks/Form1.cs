@@ -108,13 +108,19 @@ namespace WindowsFormsApplication1
             }
 
         }
-
         public void DessinImage2(List<List<double>> lvecteursentrees, List<List<double>> lvecteursentreesnormalise, List<double> lsortiesdesirees)
         {
             List<double> lsortiesobtenues = reseau.ResultatsEnSortie(lvecteursentreesnormalise);
             int sortieCourante = 0;
+
+            // Affichage de l'erreur max obtenue
             double erreurMax = rechercherErreurMax(lsortiesobtenues, lsortiesdesirees);
             erreurLbl.Text = erreurMax.ToString();
+            
+            // Affichage du taux d'erreur résiduel
+            double TauxErreur = rechercherTauxErreurResiduel(lsortiesobtenues, lsortiesdesirees);
+            erreurLbl2.Text = TauxErreur.ToString();
+
 
             foreach (List<double> vect in lvecteursentrees)
             {
@@ -136,6 +142,17 @@ namespace WindowsFormsApplication1
                 if (erreur > max) max = erreur;
             }
             return max;
+        }
+        public double rechercherTauxErreurResiduel(List<double> lsortiesobtenues, List<double> lsortiesdesirees)
+        {
+            double sommeErreurs = 0;
+            for (int i = 0; i < lsortiesdesirees.Count; i++)
+            {
+                sommeErreurs += Math.Abs(255 * (lsortiesdesirees[i] - lsortiesobtenues[i]));
+            }
+            sommeErreurs = sommeErreurs / lsortiesobtenues.Count();
+
+            return sommeErreurs;
         }
 
     }

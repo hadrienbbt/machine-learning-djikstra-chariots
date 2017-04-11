@@ -55,6 +55,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.erreurLbl = new System.Windows.Forms.Label();
+            this.TauxErreurLbl = new System.Windows.Forms.Label();
+            this.erreurLbl2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -221,9 +223,9 @@
             this.label6.Location = new System.Drawing.Point(778, 13);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(206, 13);
+            this.label6.Size = new System.Drawing.Size(204, 13);
             this.label6.TabIndex = 16;
-            this.label6.Text = "nb d\'exemples pour chaque apprentissage";
+            this.label6.Text = "nb d\'itérations pour chaque apprentissage";
             // 
             // label7
             // 
@@ -302,7 +304,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(748, 233);
+            this.label11.Location = new System.Drawing.Point(799, 187);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(63, 13);
@@ -312,18 +314,40 @@
             // erreurLbl
             // 
             this.erreurLbl.AutoSize = true;
-            this.erreurLbl.Location = new System.Drawing.Point(815, 233);
+            this.erreurLbl.Location = new System.Drawing.Point(923, 187);
             this.erreurLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.erreurLbl.Name = "erreurLbl";
             this.erreurLbl.Size = new System.Drawing.Size(34, 13);
             this.erreurLbl.TabIndex = 27;
             this.erreurLbl.Text = "erreur";
             // 
+            // TauxErreurLbl
+            // 
+            this.TauxErreurLbl.AutoSize = true;
+            this.TauxErreurLbl.Location = new System.Drawing.Point(796, 211);
+            this.TauxErreurLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.TauxErreurLbl.Name = "TauxErreurLbl";
+            this.TauxErreurLbl.Size = new System.Drawing.Size(114, 13);
+            this.TauxErreurLbl.TabIndex = 28;
+            this.TauxErreurLbl.Text = "Taux d\'erreur résiduel :";
+            // 
+            // erreurLbl2
+            // 
+            this.erreurLbl2.AutoSize = true;
+            this.erreurLbl2.Location = new System.Drawing.Point(923, 211);
+            this.erreurLbl2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.erreurLbl2.Name = "erreurLbl2";
+            this.erreurLbl2.Size = new System.Drawing.Size(34, 13);
+            this.erreurLbl2.TabIndex = 29;
+            this.erreurLbl2.Text = "erreur";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1033, 787);
+            this.Controls.Add(this.erreurLbl2);
+            this.Controls.Add(this.TauxErreurLbl);
             this.Controls.Add(this.erreurLbl);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.pictureBox2);
@@ -391,5 +415,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label erreurLbl;
+        private System.Windows.Forms.Label TauxErreurLbl;
+        private System.Windows.Forms.Label erreurLbl2;
     }
 }
