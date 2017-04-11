@@ -46,6 +46,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxnbiter = new System.Windows.Forms.TextBox();
+            this.erreurLbl2 = new System.Windows.Forms.Label();
+            this.TauxErreurLbl = new System.Windows.Forms.Label();
+            this.erreurLbl = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ImageSortiePBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -207,9 +211,9 @@
             this.label6.Location = new System.Drawing.Point(894, 308);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(206, 13);
+            this.label6.Size = new System.Drawing.Size(204, 13);
             this.label6.TabIndex = 38;
-            this.label6.Text = "nb d\'exemples pour chaque apprentissage";
+            this.label6.Text = "nb d\'itérations pour chaque apprentissage";
             // 
             // textBoxnbiter
             // 
@@ -218,13 +222,57 @@
             this.textBoxnbiter.Name = "textBoxnbiter";
             this.textBoxnbiter.Size = new System.Drawing.Size(76, 20);
             this.textBoxnbiter.TabIndex = 37;
-            this.textBoxnbiter.Text = "1";
+            this.textBoxnbiter.Text = "50";
+            // 
+            // erreurLbl2
+            // 
+            this.erreurLbl2.AutoSize = true;
+            this.erreurLbl2.Location = new System.Drawing.Point(1047, 540);
+            this.erreurLbl2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.erreurLbl2.Name = "erreurLbl2";
+            this.erreurLbl2.Size = new System.Drawing.Size(34, 13);
+            this.erreurLbl2.TabIndex = 44;
+            this.erreurLbl2.Text = "erreur";
+            // 
+            // TauxErreurLbl
+            // 
+            this.TauxErreurLbl.AutoSize = true;
+            this.TauxErreurLbl.Location = new System.Drawing.Point(888, 540);
+            this.TauxErreurLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.TauxErreurLbl.Name = "TauxErreurLbl";
+            this.TauxErreurLbl.Size = new System.Drawing.Size(114, 13);
+            this.TauxErreurLbl.TabIndex = 43;
+            this.TauxErreurLbl.Text = "Taux d\'erreur résiduel :";
+            // 
+            // erreurLbl
+            // 
+            this.erreurLbl.AutoSize = true;
+            this.erreurLbl.Location = new System.Drawing.Point(1047, 516);
+            this.erreurLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.erreurLbl.Name = "erreurLbl";
+            this.erreurLbl.Size = new System.Drawing.Size(34, 13);
+            this.erreurLbl.TabIndex = 42;
+            this.erreurLbl.Text = "erreur";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(891, 516);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(63, 13);
+            this.label11.TabIndex = 41;
+            this.label11.Text = "Erreur max :";
             // 
             // VisualisationSortie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1161, 873);
+            this.Controls.Add(this.erreurLbl2);
+            this.Controls.Add(this.TauxErreurLbl);
+            this.Controls.Add(this.erreurLbl);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.textBoxalpha);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -272,5 +320,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxnbiter;
+        private System.Windows.Forms.Label erreurLbl2;
+        private System.Windows.Forms.Label TauxErreurLbl;
+        private System.Windows.Forms.Label erreurLbl;
+        private System.Windows.Forms.Label label11;
     }
 }
