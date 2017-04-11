@@ -27,6 +27,7 @@ namespace WindowsApplication1
             random = new Random();
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             g = Graphics.FromImage( pictureBox1.Image);
+            ControlerData.chargerFichier("../../datasetclassif.txt");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -39,65 +40,18 @@ namespace WindowsApplication1
             double u1, u2,r1, r2 ;
             int hasard;
 
-            // Creation des données
-            lobs.Clear();
-            for (int i=0; i<1000; i++)
-            {
-                double x, y;
-              
-              /*  x = random.Next(bmp.Width);
-                y = random.Next(bmp.Height);
-                lobs.Add(new Observation(x, y));
-            */
 
-                
-                  hasard = random.Next(10);
-                  if (hasard > 5)
-                  {
-                      do {
-                          u1 = random.NextDouble();
-                          u2 = random.NextDouble();
-                          r1 = Math.Sqrt(-2 * Math.Log(u1)) * Math.Cos(2 * Math.PI * u2);
-                          u1 = random.NextDouble();
-                          u2 = random.NextDouble();
-                          r2 = Math.Sqrt(-2 * Math.Log(u1)) * Math.Cos(2 * Math.PI * u2);
-                          // r1 et r2 variables gaussiennes centrées réduites (donc moyenne 0, écart-type 1)
-                          x = r1 * 10 + bmp.Width / 2;    // x variable gaussienne de moyenne bmp.width /2 et d'écart-type 50
-                          y = r2 * 20 + bmp.Height / 4;  // y variable gaussienne de moyenne bmp.height/4 et d'écart-type 10
-                      }
-                      while ((x <0) || x>=bmp.Width || y>=bmp.Height);
-                      lobs.Add( new Observation( x, y));
-                  }  
-                  else if (hasard > 2)
-                   {  do {
-                       u1 = random.NextDouble();
-                       u2 = random.NextDouble();
-                       r1 = Math.Sqrt(-2 * Math.Log(u1)) * Math.Cos(2 * Math.PI * u2);
-                       u1 = random.NextDouble();
-                       u2 = random.NextDouble();
-                       r2 = Math.Sqrt(-2 * Math.Log(u1)) * Math.Cos(2 * Math.PI * u2);
-                       x = r1 * 50 + bmp.Width / 2;  // x variable gaussienne de moyenne bmp.width /2 et d'écart-type 50
-                       y = r2 * 20 + 3 * bmp.Height / 4;  // y variable gaussienne de moyenne 3*bmp.height/4 et d'écart-type 20
-                      }
-                      while ((x <0)|| x>=bmp.Width || y>=bmp.Height);
-                      lobs.Add( new Observation( x, y));
-                  }
-                  else
-                   { do {
-                       u1 = random.NextDouble();
-                       u2 = random.NextDouble();
-                       r1 = Math.Sqrt(-2 * Math.Log(u1)) * Math.Cos(2 * Math.PI * u2);
-                       u1 = random.NextDouble();
-                       u2 = random.NextDouble();
-                       r2 = Math.Sqrt(-2 * Math.Log(u1)) * Math.Cos(2 * Math.PI * u2);
-                       x = r1 * 20 + bmp.Width / 5; // x variable gaussienne de moyenne bmp.width /5 et d'écart-type 20
-                       y = r2 * 30 + 3 * bmp.Height / 5;  // y variable gaussienne de moyenne 3*bmp.height/5 et d'écart-type 30
-                      }
-                      while (x <0 || x>=bmp.Width || y>=bmp.Height);
-                      lobs.Add( new Observation( x, y));
-               }  
-            }
-                 
+            // Création des données
+            List<List<Double>> classeAapprentissage = ControlerData.vectFactory(1);
+            List<List<Double>> classeBapprentissage = ControlerData.vectFactory(0);
+
+            //Uniformisation
+            List<List<double>> lvecteursapprentissage = ControlerData.intercaler(classeAapprentissage, classeBapprentissage);
+            List<int> lsortiesdesirees = ControlerData.intercaler(ControlerData.getAllClasseA(), ControlerData.getAllClasseB());
+
+            // Insertion des données
+            lobs.Clear();
+            lobs = ControlerData.ObservationFactory(lvecteursapprentissage,0);
 
             // Creation de la carte SOM
             SOM = new CarteSOM(nbcol, nblignes, 2, bmp.Width);
