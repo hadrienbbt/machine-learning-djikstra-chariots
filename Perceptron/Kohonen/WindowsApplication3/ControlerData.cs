@@ -88,7 +88,7 @@ namespace WindowsApplication1
 
         public static List<List<double>> vectFactory()
         {
-            List<Dictionary<string, double>> tmp = ControlerData.getAllValues();
+            List<Dictionary<string,double>> tmp = ControlerData.getAllValues();
             List<double> tmp2;
             List<List<double>> res = new List<List<double>>();
 
@@ -99,7 +99,6 @@ namespace WindowsApplication1
                 tmp2.Add(item["y"]);
                 res.Add(tmp2);
             }
-
             return res;
         }
 
@@ -126,7 +125,7 @@ namespace WindowsApplication1
             return res;
         }
 
-        public static void Shuffle<T>(this IList<T> list)
+		public static void Shuffle<T>(this IList<T> list)
 		{
 			int n = list.Count;
 			while (n > 1)
