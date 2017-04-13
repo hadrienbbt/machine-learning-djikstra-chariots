@@ -88,7 +88,7 @@ namespace WindowsApplication1
 
         public static List<List<double>> vectFactory()
         {
-            List<Dictionary<string,double>> tmp = ControlerData.getAllValues();
+            List<Dictionary<string, double>> tmp = ControlerData.getAllValues();
             List<double> tmp2;
             List<List<double>> res = new List<List<double>>();
 
@@ -99,7 +99,7 @@ namespace WindowsApplication1
                 tmp2.Add(item["y"]);
                 res.Add(tmp2);
             }
-           
+
             return res;
         }
 
@@ -110,12 +110,12 @@ namespace WindowsApplication1
             int tailleEch = 1500;
 
             StreamReader sr = new StreamReader(filename);
-            for (int i = 0; i < offset*3; i++) sr.ReadLine();
+            for (int i = 0; i < offset * 3; i++) sr.ReadLine();
             string line = sr.ReadLine();
 
             for (int i = 0; i < tailleEch; i++)
             {
-                res.Add(new List<double> ());
+                res.Add(new List<double>());
                 line = sr.ReadLine();
                 res[res.Count - 1].Add(Double.Parse(line));
                 line = sr.ReadLine();
@@ -126,7 +126,7 @@ namespace WindowsApplication1
             return res;
         }
 
-		public static void Shuffle<T>(this IList<T> list)
+        public static void Shuffle<T>(this IList<T> list)
 		{
 			int n = list.Count;
 			while (n > 1)
@@ -243,6 +243,7 @@ namespace WindowsApplication1
             return x;
         }
 
+        //Normaliseunvecteurdetaille2
         public static List<List<Double>> normaliserVecteur(List<List<Double>> listeBase, double valMaxX, double valMaxY)
         {
             List<List<Double>> res = new List<List<double>>();

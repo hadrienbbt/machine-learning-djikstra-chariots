@@ -100,14 +100,14 @@ namespace WindowsApplication1
         {
             listclasses.Clear();
             // Regroupement pour obtenir 2 classes
-            SOM.regroupement(lobs,2 );
+            SOM.regroupement(lobs,6 );
             pen.Color = Color.White;
             g.FillRectangle(pen.Brush, 0, 0, bmp.Width, bmp.Height);
             AfficheDonnees();
 
             // Affichage final des 2 classes
             int x, y;
-            pen.Color = Color.Blue;
+            pen.Color = Color.DarkBlue;
             foreach (Neurone n in listclasses[0].GetNeurones())
                 {
                     x = Convert.ToInt32(n.GetPoids(0));
@@ -115,7 +115,7 @@ namespace WindowsApplication1
                     g.DrawEllipse(pen, x - 2, y - 2, 4, 4);
                 }
 
-            pen.Color = Color.Yellow;
+            pen.Color = Color.ForestGreen;
             foreach (Neurone n in listclasses[1].GetNeurones())
                 {
                     x = Convert.ToInt32(n.GetPoids(0));

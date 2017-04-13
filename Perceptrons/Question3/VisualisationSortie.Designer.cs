@@ -46,10 +46,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxnbiter = new System.Windows.Forms.TextBox();
-            this.erreurLbl2 = new System.Windows.Forms.Label();
-            this.TauxErreurLbl = new System.Windows.Forms.Label();
-            this.erreurLbl = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.nbErreurs = new System.Windows.Forms.Label();
+            this.nbErreur = new System.Windows.Forms.Label();
+            this.incertitudes = new System.Windows.Forms.Label();
+            this.incertitude = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nbInclassable = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ImageSortiePBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -224,55 +226,75 @@
             this.textBoxnbiter.TabIndex = 37;
             this.textBoxnbiter.Text = "50";
             // 
-            // erreurLbl2
+            // nbErreurs
             // 
-            this.erreurLbl2.AutoSize = true;
-            this.erreurLbl2.Location = new System.Drawing.Point(1047, 540);
-            this.erreurLbl2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.erreurLbl2.Name = "erreurLbl2";
-            this.erreurLbl2.Size = new System.Drawing.Size(34, 13);
-            this.erreurLbl2.TabIndex = 44;
-            this.erreurLbl2.Text = "erreur";
+            this.nbErreurs.AutoSize = true;
+            this.nbErreurs.Location = new System.Drawing.Point(1047, 569);
+            this.nbErreurs.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.nbErreurs.Name = "nbErreurs";
+            this.nbErreurs.Size = new System.Drawing.Size(10, 13);
+            this.nbErreurs.TabIndex = 44;
+            this.nbErreurs.Text = "-";
             // 
-            // TauxErreurLbl
+            // nbErreur
             // 
-            this.TauxErreurLbl.AutoSize = true;
-            this.TauxErreurLbl.Location = new System.Drawing.Point(888, 540);
-            this.TauxErreurLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.TauxErreurLbl.Name = "TauxErreurLbl";
-            this.TauxErreurLbl.Size = new System.Drawing.Size(114, 13);
-            this.TauxErreurLbl.TabIndex = 43;
-            this.TauxErreurLbl.Text = "Taux d\'erreur résiduel :";
+            this.nbErreur.AutoSize = true;
+            this.nbErreur.Location = new System.Drawing.Point(891, 569);
+            this.nbErreur.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.nbErreur.Name = "nbErreur";
+            this.nbErreur.Size = new System.Drawing.Size(54, 13);
+            this.nbErreur.TabIndex = 43;
+            this.nbErreur.Text = "NbErreurs";
             // 
-            // erreurLbl
+            // incertitudes
             // 
-            this.erreurLbl.AutoSize = true;
-            this.erreurLbl.Location = new System.Drawing.Point(1047, 516);
-            this.erreurLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.erreurLbl.Name = "erreurLbl";
-            this.erreurLbl.Size = new System.Drawing.Size(34, 13);
-            this.erreurLbl.TabIndex = 42;
-            this.erreurLbl.Text = "erreur";
+            this.incertitudes.AutoSize = true;
+            this.incertitudes.Location = new System.Drawing.Point(1047, 516);
+            this.incertitudes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.incertitudes.Name = "incertitudes";
+            this.incertitudes.Size = new System.Drawing.Size(10, 13);
+            this.incertitudes.TabIndex = 42;
+            this.incertitudes.Text = "-";
             // 
-            // label11
+            // incertitude
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(891, 516);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 13);
-            this.label11.TabIndex = 41;
-            this.label11.Text = "Erreur max :";
+            this.incertitude.AutoSize = true;
+            this.incertitude.Location = new System.Drawing.Point(891, 516);
+            this.incertitude.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.incertitude.Name = "incertitude";
+            this.incertitude.Size = new System.Drawing.Size(57, 13);
+            this.incertitude.TabIndex = 41;
+            this.incertitude.Text = "Incertitude";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(890, 544);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 13);
+            this.label4.TabIndex = 45;
+            this.label4.Text = "NbInclassable";
+            // 
+            // nbInclassable
+            // 
+            this.nbInclassable.AutoSize = true;
+            this.nbInclassable.Location = new System.Drawing.Point(1047, 544);
+            this.nbInclassable.Name = "nbInclassable";
+            this.nbInclassable.Size = new System.Drawing.Size(10, 13);
+            this.nbInclassable.TabIndex = 46;
+            this.nbInclassable.Text = "-";
             // 
             // VisualisationSortie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1161, 873);
-            this.Controls.Add(this.erreurLbl2);
-            this.Controls.Add(this.TauxErreurLbl);
-            this.Controls.Add(this.erreurLbl);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.nbInclassable);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.nbErreurs);
+            this.Controls.Add(this.nbErreur);
+            this.Controls.Add(this.incertitudes);
+            this.Controls.Add(this.incertitude);
             this.Controls.Add(this.textBoxalpha);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -320,9 +342,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxnbiter;
-        private System.Windows.Forms.Label erreurLbl2;
-        private System.Windows.Forms.Label TauxErreurLbl;
-        private System.Windows.Forms.Label erreurLbl;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label nbErreurs;
+        private System.Windows.Forms.Label nbErreur;
+        private System.Windows.Forms.Label incertitudes;
+        private System.Windows.Forms.Label incertitude;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label nbInclassable;
     }
 }

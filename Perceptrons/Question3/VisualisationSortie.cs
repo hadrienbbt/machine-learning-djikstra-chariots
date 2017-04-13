@@ -17,6 +17,8 @@ namespace Question3
 		private PictureBox ImageSortiePBox;
 		Reseau reseau;
 		private List<int> lsortiesdesirees;
+		private double marge = 0.2;
+
 		public VisualisationSortie()
 		{
 			InitializeComponent();
@@ -43,7 +45,10 @@ namespace Question3
 			reseau.backprop(lvecteursentreesnormalisees, lsortiesdesirees,
 								Convert.ToDouble(textBoxalpha.Text),
 								Convert.ToInt32(textBoxnbiter.Text));
-			DessinImage();
+            List<double> lsortiestestErreurRes = reseau.ResultatsEnSortie(lvecteursentreesnormalisees);
+            rechercherTauxErreurResiduel(lsortiestestErreurRes, lsortiesdesirees, this.marge);
+
+            DessinImage();
 			DessinPoints();
 			ImageSortiePBox.Invalidate();
 		}
@@ -98,13 +103,6 @@ namespace Question3
 				}
 
 			}
-
-			// Affichage de l'erreur max obtenue
-			double erreurMax = rechercherErreurMax(lsortiesobtenues, lsortiesdesirees);
-			erreurLbl.Text = erreurMax.ToString();
-			// Affichage du taux d'erreur résiduel
-			double TauxErreur = rechercherTauxErreurResiduel(lsortiesobtenues, lsortiesdesirees);
-			erreurLbl2.Text = TauxErreur.ToString();
 		}
 
 		public void DessinPoints()
@@ -130,22 +128,38 @@ namespace Question3
 			double max = 0;
 			for (int i = 0; i < lsortiesdesirees.Count; i++)
 			{
-				double erreur = Math.Abs(255 * (lsortiesdesirees[i] - lsortiesobtenues[i]));
+				double erreur = Math.Abs(lsortiesdesirees[i] - lsortiesobtenues[i]);
 				if (erreur > max) max = erreur;
 			}
 			return max;
 		}
 
-		public double rechercherTauxErreurResiduel(List<double> lsortiesobtenues, List<int> lsortiesdesirees)
+		public void rechercherTauxErreurResiduel(List<double> lsortiesobtenues, List<int> lsortiesdesirees, double marge)
 		{
-			double sommeErreurs = 0;
-			for (int i = 0; i < lsortiesdesirees.Count; i++)
-			{
-				sommeErreurs += Math.Abs(255 * (lsortiesdesirees[i] - lsortiesobtenues[i]));
-			}
-			sommeErreurs = sommeErreurs / lsortiesobtenues.Count();
+			int compteurBonnesReponses = 0;
+			int compteurMauvaiseReponses = 0;
+			int compteurInclassables = 0;
 
-			return sommeErreurs;
-		}
+			// On procède à un filtrage des sorties obtenues pour qu'elles correspondent aux désirées
+			for (int i = 0; i < lsortiesobtenues.Count; i++)
+			{
+				if (lsortiesobtenues[i] > 1-marge) lsortiesobtenues[i] = 1;
+				if (lsortiesobtenues[i] < marge) lsortiesobtenues[i] = 0;
+			}
+
+            // On repasse ensuite la liste pour comparer les sorties obtenues et désirées
+            for (int i = 0; i < lsortiesobtenues.Count; i++)
+            {
+				if (lsortiesobtenues[i] == lsortiesdesirees[i]) compteurBonnesReponses++;
+				else if (lsortiesobtenues[i] < 1 - marge || lsortiesobtenues[i] > marge) compteurInclassables++;
+				else compteurMauvaiseReponses++;
+			}
+
+            double pourcentageIncertitude = ((double)compteurInclassables / (double)lsortiesobtenues.Count)*100;
+
+            this.incertitudes.Text = pourcentageIncertitude.ToString() + " %";
+            this.nbErreurs.Text = compteurMauvaiseReponses.ToString();
+            this.nbInclassable.Text = compteurInclassables.ToString();
+        }
 	}
 }
