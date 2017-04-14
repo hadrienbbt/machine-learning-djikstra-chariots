@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ProjetChariot1
 {
-    class Graph
+    public class Graph
     {
         public List<GenericNode> L_Ouverts;
         public List<GenericNode> L_Fermes;
